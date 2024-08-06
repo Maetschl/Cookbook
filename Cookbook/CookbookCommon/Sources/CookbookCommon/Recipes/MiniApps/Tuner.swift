@@ -44,7 +44,7 @@ class TunerConductor: ObservableObject, HasAudioEngine {
         silence = Fader(tappableNodeC, gain: 0)
         engine.output = silence
 
-        tracker = PitchTap(mic) { pitch, amp in
+        tracker = PitchTap(mic, bufferSize: 2*4096) { pitch, amp in
             DispatchQueue.main.async {
                 self.update(pitch[0], amp[0])
             }
